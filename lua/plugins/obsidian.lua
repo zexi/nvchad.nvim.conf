@@ -27,6 +27,9 @@ return {
       },
 
       -- see below for full list of options 👇
+      follow_url_func = function(url)
+        vim.fn.jobstart({"open", url})
+      end
     },
   },
 }
