@@ -40,12 +40,16 @@ local function lsp_keymaps(bufnr)
     '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>b", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
-  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
+  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.format()' ]]
 end
+
+require("lsp-format").setup {}
 
 local on_attach = function(client, bufnr)
   lsp_keymaps(bufnr)
+  require("lsp-format").on_attach(client, bufnr)
 end
+
 
 -- lsps with default config
 for _, lsp in ipairs(servers) do
