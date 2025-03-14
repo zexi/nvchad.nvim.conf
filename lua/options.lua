@@ -6,6 +6,17 @@ local o = vim.o
 o.cursorlineopt ='both' -- to enable cursorline!
 o.mouse = ""
 
+local options = {
+  scrolloff = 5, -- is one of my fav, keep in center
+  wrap = true,   -- not display lines as one long line
+  listchars = "eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣",
+  history = 10000,
+  signcolumn = "no",                      -- always show the sign column, otherwise it would shift the text each time
+}
+for k, v in pairs(options) do
+  vim.opt[k] = v
+end
+
 vim.cmd [[
   augroup _restore_last_cursor_position
     autocmd!

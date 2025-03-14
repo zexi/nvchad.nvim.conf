@@ -4,7 +4,7 @@ require("nvchad.configs.lspconfig").defaults()
 local lspconfig = require "lspconfig"
 
 -- EXAMPLE
-local servers = { "html", "cssls", "pyright", "gopls" }
+local servers = { "html", "cssls", "pyright", "gopls", "clangd" }
 local nvlsp = require "nvchad.configs.lspconfig"
 
 local opts = { noremap = true, silent = true }
@@ -67,3 +67,9 @@ end
 --   on_init = nvlsp.on_init,
 --   capabilities = nvlsp.capabilities,
 -- }
+--
+lspconfig.clangd.setup {
+  on_attach = on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
+}
