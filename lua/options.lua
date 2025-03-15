@@ -3,7 +3,9 @@ require "nvchad.options"
 -- add yours here!
 
 local o = vim.o
-o.cursorlineopt ='both' -- to enable cursorline!
+-- o.cursorlineopt ='both' -- to enable cursorline!
+o.cursorlineopt ='line' -- to enable cursorline!
+vim.api.nvim_set_hl(0, 'CursorLine', { bg = '#3c3836' })
 o.mouse = ""
 
 local options = {
@@ -25,6 +27,12 @@ vim.cmd [[
 
   augroup _file_type_setting
     autocmd FileType go,make setlocal sw=4 tabstop=4 noexpandtab
+  augroup end
+
+  augroup BgHighlight
+    autocmd!
+    autocmd WinEnter * set cul
+    autocmd WinLeave * set nocul
   augroup end
 ]]
 
