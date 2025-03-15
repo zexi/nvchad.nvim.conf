@@ -19,12 +19,25 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
-vim.cmd [[
-  augroup _restore_last_cursor_position
-    autocmd!
-    autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-  augroup end
+local autocmd = vim.api.nvim_create_autocmd
 
+autocmd("BufReadPost", {
+  pattern = "*",
+  callback = function()
+    local line = vim.fn.line "'\""
+    if
+      line > 1
+      and line <= vim.fn.line "$"
+      and vim.bo.filetype ~= "commit"
+      and vim.fn.index({ "xxd", "gitrebase" }, vim.bo.filetype) == -1
+    then
+      vim.cmd 'normal! g`"'
+    end
+  end,
+})
+
+
+vim.cmd [[
   augroup _file_type_setting
     autocmd FileType go,make setlocal sw=4 tabstop=4 noexpandtab
   augroup end
