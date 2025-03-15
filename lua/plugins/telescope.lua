@@ -7,12 +7,13 @@ return {
       {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
+        event = "BufReadPost",
+        config = function ()
+          local telescope = require("telescope")
+          telescope.load_extension('fzf')
+        end,
       },
     },
-    config = function ()
-      local telescope = require("telescope")
-      telescope.load_extension('fzf')
-    end,
     opts = {
       defaults = {
         file_ignore_patterns = { "^./.git/", "^node_modules/", "^vendor/" },
