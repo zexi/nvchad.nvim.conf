@@ -47,6 +47,8 @@ vim.cmd [[
     autocmd WinEnter * set cul
     autocmd WinLeave * set nocul
   augroup end
+
+  hi Visual term=reverse cterm=reverse guibg=Grey
 ]]
 
 local wr_group = vim.api.nvim_create_augroup('WinResize', { clear = true })
