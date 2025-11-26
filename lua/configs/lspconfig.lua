@@ -4,7 +4,7 @@ require("nvchad.configs.lspconfig").defaults()
 local lspconfig = require "lspconfig"
 
 -- EXAMPLE
-local servers = { "html", "cssls", "pyright", "gopls", "clangd" }
+local servers = { "html", "cssls", "pyright", "gopls", "clangd", "rust_analyzer" }
 local nvlsp = require "nvchad.configs.lspconfig"
 
 local opts = { noremap = true, silent = true }
